@@ -3,6 +3,8 @@
 
 Package is **very experimental**. Trying [rscala](https://dahl-git.byu.edu/dahl/rscala) pacakge for R <-> Scala integration (and it looks very easy to use and create packages which use Scala code!).
 
+This client is built for `Scala 2.11.8` and `Kafka 0.10.2.0`. For instructions on how to build KafkaClient for your environment please refer to [readme](./rscala-kafka/README.md) in `rscala-kafka` directory.
+
 ## Consumer
 To create simple consumer you need something like:
 ```r

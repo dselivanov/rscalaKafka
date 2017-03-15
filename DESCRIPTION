@@ -3,7 +3,7 @@ Type: Package
 Title: Apache Kafka Client with rscala
 Version: 0.1.0
 Author: Dmitriy Selivanov
-Maintainer: Dmitriy Selivanvo <selivanov.dmitriy@gmail.com>
+Maintainer: Dmitriy Selivanov <selivanov.dmitriy@gmail.com>
 Description: Tiny client for Apache Kafka with rscala package.
 License: GPL >= 3
 Imports:
