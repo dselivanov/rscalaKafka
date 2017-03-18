@@ -49,7 +49,7 @@ KafkaProducer = R6::R6Class(
     send = function(messages) {
       if(!is.character(messages))
         messages = as.character(messages)
-      private$kafka_producer$send(messages)
+      private$kafka_producer$send(messages, length.one.as.vector=TRUE)
     }
   ),
   private = list(
