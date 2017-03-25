@@ -30,7 +30,7 @@ Create producer with:
 ```r
 library(rscalaKafka)
 producer = KafkaProducer$new(topic_name = "some_topic_name", 
-bootstrap_servers = "localhost:9092", config = list())
+broker_list = "localhost:9092", config = list())
 producer$send(LETTERS)
 ```
 
