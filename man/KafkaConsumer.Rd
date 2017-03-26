@@ -34,7 +34,7 @@ consumer$poll(interval = 100)
 
 \describe{
   \item{consumer}{A \code{KafkaConsumer} object}
-  \item{topic_name}{name of a Kafka topic to read messages from}
+  \item{topic}{name of a Kafka topic to read messages from}
   \item{broker_list}{bootstrap_servers for a Kafka cluster}
   \item{config}{ConsumerConfig parameters (in \code{key = value} format) for kafka client -
   see them here \url{https://kafka.apache.org/0100/javadoc/index.html?org/apache/kafka/clients/consumer/ConsumerConfig.html}}

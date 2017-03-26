@@ -22,7 +22,7 @@ producer$send(messages)
 \section{Methods}{
 
 \describe{
-  \item{\code{producer = KafkaProducer$new(topic_name, broker_list, config = list())}}{Creares
+  \item{\code{producer = KafkaProducer$new(broker_list, client_id = "RscalaKafkaClient", config = list())}}{Creares
   instance of KafkaProducer}
   \item{\code{producer$send(messages)}}{Asynchronously send a record to a topic.}
 }
@@ -32,7 +32,8 @@ producer$send(messages)
 
 \describe{
   \item{producer}{A \code{KafkaProducer} object}
-  \item{topic_name}{name of a Kafka topic to send messages}
+  \item{client_id}{string, identifier of the client}
+  \item{topic}{name of a Kafka topic to send messages}
   \item{broker_list}{broker list for a Kafka cluster}
   \item{config}{ProducerConfig parameters (in \code{key = value} format) for kafka client -
   see them here \url{https://kafka.apache.org/0100/javadoc/index.html?org/apache/kafka/clients/producer/ProducerConfig.html}}

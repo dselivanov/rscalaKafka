@@ -21,7 +21,7 @@
 #' @section Arguments:
 #' \describe{
 #'   \item{consumer}{A \code{KafkaConsumer} object}
-#'   \item{topic_name}{name of a Kafka topic to read messages from}
+#'   \item{topic}{name of a Kafka topic to read messages from}
 #'   \item{broker_list}{bootstrap_servers for a Kafka cluster}
 #'   \item{config}{ConsumerConfig parameters (in \code{key = value} format) for kafka client -
 #'   see them here \url{https://kafka.apache.org/0100/javadoc/index.html?org/apache/kafka/clients/consumer/ConsumerConfig.html}}
@@ -32,13 +32,13 @@
 KafkaConsumer = R6::R6Class(
   classname = "KafkaConsumer",
   public = list(
-    initialize = function(topic_name,
+    initialize = function(topic,
                           bootstrap_servers,
                           group_id,
                           config = list()) {
       # ensure these parameters are strings
       bootstrap_servers = as.character(bootstrap_servers)
-      topic_name = as.character(topic_name)
+      topic = as.character(topic)
       group_id = as.character(group_id)
 
       config_keys = character(0)
@@ -53,11 +53,25 @@ KafkaConsumer = R6::R6Class(
         stopifnot(length(config_keys) == length(config_values))
       }
 
-      private$kafka_consumer = s$do('org.dselivanov.rkafka.RscalaKafkaConsumer')$new(topic_name, bootstrap_servers, group_id, config_keys, config_values)
+      private$kafka_consumer =
+        s$do('org.dselivanov.rkafka.RscalaKafkaConsumer')$new(topic, bootstrap_servers,
+                                                              group_id, config_keys, config_values,
+                                                              length.one.as.vector = TRUE)
+      private$kafka_consumer$subscribe()
     },
+
     poll = function(interval = 0) {
       interval = as.integer(interval)
       private$kafka_consumer$poll(interval)
+    },
+
+    unsubsribe = function() {
+      private$kafka_consumer$unsubscribe()
+    },
+
+    # finalizer - implicitly unsubsribe
+    finalize = function() {
+      private$kafka_consumer$unsubscribe()
     }
   ),
   private = list(
